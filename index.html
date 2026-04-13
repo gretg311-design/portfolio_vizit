@@ -8,10 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
-        /* Главный фон: загрузим картинку в GitHub и назовем её background.png */
         body {
-            background-color: #1a1a1d; /* Тёмно-серый фон на случай, если картинка не загрузится */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('background.png');
+            background-color: #1a1a1d; 
+            /* Фон: файл должен называться background.png и лежать рядом с index.html */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -25,130 +25,94 @@
             min-height: 100vh;
         }
 
-        .container { max-width: 800px; width: 100%; text-align: center; }
+        .container { max-width: 600px; width: 100%; text-align: center; }
         
         h1 { color: #bb86fc; font-size: 2.2em; margin-bottom: 5px; }
-        h3 { color: #bb86fc; margin-top: 0; }
-        
-        .intro-text { opacity: 0.8; font-size: 1.1em; margin-bottom: 30px; }
 
-        /* Стиль карточек */
         .card {
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.9);
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            border: 1px solid #333;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            text-align: left; /* Текст в карточках выравниваем по левому краю */
+            border: 1px solid #444;
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* Стиль ссылок-кнопок (важно для перебивки стилей GitHub) */
-        .btn, a.btn {
-            display: inline-block;
+        .btn {
+            display: block;
+            width: 100%;
             background: #03dac6;
-            color: #000 !important; /* !important перебивает синий цвет GitHub */
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none !important; /* Убираем подчеркивание */
+            color: #000 !important;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none !important;
             font-weight: bold;
             margin-top: 10px;
-            transition: background 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 1em;
+            box-sizing: border-box;
             text-align: center;
+            font-size: 16px;
         }
-        .btn:hover { background: #01bca9; }
 
-        /* Специфические стили для кнопок донатов */
         .btn-mono { background: #e53935; color: white !important; }
-        .btn-vst { background: #000; color: #fff !important; border: 1px solid #ffffff33; }
-        .vst-logo { color: #ff0000; font-weight: bold; margin-right: 8px; font-size: 1.1em; }
-
-        /* Контакты */
-        .btn-mail { background: #bb86fc; color: #000 !important; }
-
-        /* Убираем синий цвет для простых ссылок */
-        p a, a:visited { color: #03dac6; text-decoration: none; }
-        p a:hover { text-decoration: underline; }
-
+        .btn-vst { background: #000; color: #fff !important; border: 1px solid #ff0000; }
+        .btn-apk { background: #bb86fc; }
+        
+        h3 { margin-top: 0; color: #03dac6; }
+        p { line-height: 1.5; opacity: 0.9; }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Привет! Я German</h1>
-        <p class="intro-text">Разработчик Telegram-ботов и мобильных игр.</p>
-
-        <div class="card">
-            <h3>AnimeAI 18+</h3>
-            <p>Боты и аниме-персонажи с собственным лором и возможностью создания своих героев.</p>
-            <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
-        </div>
+        <p style="margin-bottom: 30px;">Разработчик Telegram-ботов и игр</p>
 
         <div class="card">
             <h3>AnimeAI News</h3>
-            <p>Мой новостной канал, где я выкладываю апдейты и новости о разработке.</p>
+            <p>Новости разработки, апдейты и лор персонажей в одном месте.</p>
             <a href="https://t.me/Anime_ai_18" class="btn">Открыть канал</a>
         </div>
 
         <div class="card">
+            <h3>AnimeAI 18+</h3>
+            <p>Твой личный ИИ-собеседник с уникальным характером.</p>
+            <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
+        </div>
+
+        <div class="card">
             <h3>Моя игра (Android)</h3>
-            <p>Увлекательный геймплей прямо в твоем телефоне.</p>
-            <a href="files/game_v1.apk" class="btn" download>Скачать .APK</a>
+            <p>Нажми кнопку ниже, чтобы скачать APK файл напрямую.</p>
+            <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
         </div>
 
-        <div class="card" style="text-align: center; border: 1px dashed #ffb300;">
-            <h3 style="color: #ffb300;">Поддержать проект ☕</h3>
-            <p>Если вам нравятся мои боты, вы можете поддержать разработку копеечкой:</p>
+        <div class="card" style="border: 1px dashed #ffb300;">
+            <h3 style="color: #ffb300; text-align: center;">Поддержать автора ☕</h3>
+            <p style="text-align: center;">Если хочешь помочь проекту копеечкой:</p>
             
-            <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-                
-                <button onclick="copyCard('4441111076902315')" class="btn btn-mono">
-                    <img src="https://www.monobank.com.ua/favicon.ico" style="width: 18px; vertical-align: middle; margin-right: 8px;">
-                    Monobank (Копировать карту)
-                </button>
-
-                <button onclick="copyCard('5168120704562696')" class="btn btn-vst">
-                    <span class="vst-logo">V</span>ST Bank (Копировать карту)
-                </button>
-                
-            </div>
-            <p style="font-size: 0.85em; margin-top: 15px; opacity: 0.7;">Нажмите на кнопку, чтобы скопировать номер карты.</p>
+            <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank (Копия карты)</button>
+            <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank (Копия карты)</button>
         </div>
 
-        <div class="card" style="border-top: 2px solid #03dac6; margin-top: 40px; text-align: center;">
-            <h3>Связаться с разработчиком</h3>
-            <p>Есть вопросы по ботам или предложения по сотрудничеству?</p>
-            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                <a href="https://t.me/@german_gren" class="btn">Telegram Личка</a>
-                <a href="mailto:poziratelmirow@gmail.com" class="btn btn-mail">Написать на почту</a>
-            </div>
+        <div style="margin-top: 30px;">
+            <p>Связь со мной:</p>
+            <a href="https://t.me/@german_gren" style="color: #bb86fc; text-decoration: none; font-weight: bold;">@German_Username</a>
         </div>
     </div>
 
     <script>
-    function copyCard(cardNumber) {
-        if (cardNumber.includes('ЗАМЕНИ_')) {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Внимание!',
-              text: 'Сначала замените номера карт в коде index.html',
-              confirmButtonColor: '#ffb300',
-              color: '#fff',
-              background: '#1e1e1e'
-            });
-            return;
-        }
-        navigator.clipboard.writeText(cardNumber);
+    function copyCard(num) {
+        navigator.clipboard.writeText(num);
         Swal.fire({
           icon: 'success',
           title: 'Скопировано!',
-          text: 'Номер карты попадал в буфер обмена.',
-          showConfirmButton: false,
-          timer: 1500,
+          text: num,
+          background: '#1e1e1e',
           color: '#fff',
-          background: '#1e1e1e'
+          showConfirmButton: false,
+          timer: 1500
         });
     }
     </script>
