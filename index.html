@@ -46,6 +46,25 @@
             <p>Увлекательный геймплей прямо в твоем телефоне.</p>
             <a href="game.apk" class="btn">Скачать .APK</a>
         </div>
+<div class="card" style="text-align: center; border: 1px dashed #ffb300;">
+    <h3 style="color: #ffb300;">Поддержать проект ☕</h3>
+    <p>Если вам нравятся мои боты, вы можете поддержать разработку копеечкой:</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+        
+        <button onclick="copyCard('4441111076902315')" class="btn" style="background: #e53935; color: white; width: 100%; max-width: 300px; border: none; cursor: pointer;">
+            <img src="https://www.monobank.com.ua/favicon.ico" style="width: 16px; vertical-align: middle; margin-right: 8px;">
+            Monobank (Копировать карту)
+        </button>
+
+        <button onclick="copyCard('5168120704562696')" class="btn" style="background: #000; color: #fff; width: 100%; max-width: 300px; border: 1px solid #ffffff33; cursor: pointer;">
+            <span style="color: #ff0000; font-weight: bold; margin-right: 8px;">V</span>ST Bank (Копировать карту)
+        </button>
+        
+    </div>
+    <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.6;">Нажмите на кнопку, чтобы скопировать номер</p>
+</div>
+
            <div class="card" style="border-top: 2px solid #03dac6; margin-top: 40px; text-align: center;">
             <h3>Связаться с разработчиком</h3>
             <p>Есть вопросы по ботам или предложения по сотрудничеству?</p>
@@ -53,6 +72,12 @@
                 <a href="https://t.me/@german_gren" class="btn">Telegram Личка</a>
                 <a href="mailto:poziratelmirow@gmail.com" class="btn" style="background: #bb86fc;">Написать на почту</a>
             </div>
+<script>
+function copyCard(cardNumber) {
+    navigator.clipboard.writeText(cardNumber);
+    alert("Номер карты скопирован: " + cardNumber);
+}
+</script>
 
 </body>
 </html>
