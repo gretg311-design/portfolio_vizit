@@ -5,34 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой блог</title>
     <style>
-        body {
-            background-color: #121212; /* Глубокий темный цвет */
-            color: #e0e0e0; /* Светлый текст, чтобы не резало глаза */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.alphacoders.com/132/1327170.png'); /* Ссылка на картинку */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 40px 20px;
+            margin: 0;
         }
-        .container { max-width: 800px; width: 100%; }
-        h1 { color: #bb86fc; } /* Приятный фиолетовый акцент */
-        .card {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #333;
-        }
-        .btn {
-            display: inline-block;
-            background: #03dac6; /* Мятный цвет для кнопок */
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+
         .btn:hover { opacity: 0.8; }
     </style>
 </head>
@@ -60,5 +47,15 @@
             <a href="game.apk" class="btn">Скачать .APK</a>
         </div>
     </div>
+           <div class="card" style="border-top: 2px solid #03dac6; margin-top: 40px; text-align: center;">
+            <h3>Связаться с разработчиком</h3>
+            <p>Есть вопросы по ботам или предложения по сотрудничеству?</p>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://t.me/ТВОЙ_НИК" class="btn">Telegram Личка</a>
+                <a href="mailto:email@example.com" class="btn" style="background: #bb86fc;">Написать на почту</a>
+            </div>
+        </div>
+
+
 </body>
 </html>
