@@ -3,106 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио German</title>
+    <title>Информация о мне, мои проекты.</title>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
         body {
-            background-color: #1a1a1d; 
-            /* Фон: файл должен называться background.png и лежать рядом с index.html */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('background.png');
+            background-color: #0f0f12; 
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #e0e0e0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             margin: 0;
             min-height: 100vh;
         }
 
-        .container { max-width: 600px; width: 100%; text-align: center; }
+        .container { max-width: 500px; width: 100%; text-align: center; }
         
-        h1 { color: #bb86fc; font-size: 2.2em; margin-bottom: 5px; }
+        h1 { color: #bb86fc; font-size: 2.2em; margin-bottom: 5px; text-shadow: 0 0 15px rgba(187, 134, 252, 0.5); }
+        .subtitle { margin-bottom: 30px; opacity: 0.7; font-size: 0.9em; letter-spacing: 1px; }
 
         .card {
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px); /* Эффект размытия фона за карточкой */
             padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #444;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: left;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease;
         }
+        
+        .card:active { transform: scale(0.98); }
 
         .btn {
             display: block;
             width: 100%;
             background: #03dac6;
             color: #000 !important;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             text-decoration: none !important;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 12px;
             border: none;
             cursor: pointer;
             box-sizing: border-box;
             text-align: center;
             font-size: 16px;
+            transition: 0.3s;
         }
 
+        .btn:hover { filter: brightness(1.1); }
+
+        /* Цвета кнопок */
         .btn-mono { background: #e53935; color: white !important; }
-        .btn-vst { background: #000; color: #fff !important; border: 1px solid #ff0000; }
+        .btn-vst { background: #1a1a1a; color: #fff !important; border: 1px solid #ff0000; }
         .btn-apk { background: #bb86fc; }
+        .btn-manager { background: #6200ee; color: white !important; }
         
-        h3 { margin-top: 0; color: #03dac6; }
-        p { line-height: 1.5; opacity: 0.9; }
+        h3 { margin-top: 0; color: #03dac6; font-size: 1.3em; }
+        p { line-height: 1.4; opacity: 0.8; font-size: 0.95em; }
+
+        .footer { margin-top: 40px; padding-bottom: 20px; opacity: 0.6; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Привет! Я German</h1>
-        <p style="margin-bottom: 30px;">Разработчик Telegram-ботов и игр</p>
+        <h1>German</h1>
+        <p class="subtitle">DEVELOPER • DESIGNER • CREATOR</p>
 
         <div class="card">
-            <h3>AnimeAI News</h3>
-            <p>Новости разработки, апдейты и лор персонажей в одном месте.</p>
+            <h3>My Bio 👤</h3>
+            <p>Вся информация обо мне, моих навыках и текущих целях.</p>
+            <a href="https://t.me/bio_azymiAy" class="btn">Читать подробнее</a>
+        </div>
+
+        <div class="card">
+            <h3>AnimeAI News 📢</h3>
+            <p>Новости разработки, эксклюзивные апдейты и лор персонажей.</p>
             <a href="https://t.me/Anime_ai_18" class="btn">Открыть канал</a>
         </div>
 
         <div class="card">
-            <h3>AnimeAI 18+</h3>
-            <p>Бот с ИИ персонажами, общение и сюжеты, создание своих персонажей и многое другое можно увидеть тут.</p>
+            <h3>AnimeAI 18+ 🤖</h3>
+            <p>ИИ-персонажи, ролевые сюжеты и создание своих героев. Всё самое интересное тут.</p>
             <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
-        </div>
-<div class="card">
-            <h3>My bio</h3>
-            <p>Моя информация и данные о мне, все данные обо мне.</p>
-            <a href="https://t.me/bio_azymiAy" class="btn">Открыть био</a>
         </div>
 
         <div class="card">
-            <h3>Моя игра (Android)</h3>
-            <p>Нажми кнопку ниже, чтобы скачать APK файл напрямую.</p>
+            <h3>AnimeAI Game 🎮</h3>
+            <p>Моя игра на Android. Скачивай APK файл и погружайся в мир аниме.</p>
             <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
         </div>
 
-        <div class="card" style="border: 1px dashed #ffb300;">
-            <h3 style="color: #ffb300; text-align: center;">Поддержать автора ☕</h3>
-            <p style="text-align: center;">Если хочешь помочь проекту копеечкой:</p>
-            
-            <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank (Копия карты)</button>
-            <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank (Копия карты)</button>
+        <div class="card" style="border: 1px solid #6200ee;">
+            <h3>Реклама & PR 💼</h3>
+            <p>По вопросам сотрудничества или покупки рекламы пишите менеджеру.</p>
+            <a href="https://t.me/atsymi" class="btn btn-manager">Связаться с менеджером</a>
         </div>
 
-        <div style="margin-top: 30px;">
-            <p>Связь со мной:</p>
+        <div class="card" style="border: 1px dashed #ffb300; background: rgba(255, 179, 0, 0.05);">
+            <h3 style="color: #ffb300; text-align: center;">Поддержать автора ☕</h3>
+            <p style="text-align: center;">Любая поддержка ускоряет выход новых персонажей и новых обновлений!</p>
+            <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank (Карта)</button>
+            <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank (Карта)</button>
+        </div>
+
+        <div class="footer">
+            <p>Связь со мной напрямую:</p>
             <a href="https://t.me/german_gren" style="color: #bb86fc; text-decoration: none; font-weight: bold;">@german_gren</a>
         </div>
     </div>
