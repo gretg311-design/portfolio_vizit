@@ -3,165 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о мне, мои проекты.</title>
+    <title>Портфолио German</title>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
         body {
             background-color: #0f0f12; 
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('background.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #e0e0e0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 15px;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
             min-height: 100vh;
         }
 
-        .container { max-width: 500px; width: 100%; text-align: center; }
-        
-        h1 { color: #bb86fc; font-size: 2.2em; margin-bottom: 5px; text-shadow: 0 0 15px rgba(187, 134, 252, 0.5); }
-        .subtitle { margin-bottom: 30px; opacity: 0.7; font-size: 0.9em; letter-spacing: 1px; }
+        .container {
+            max-width: 1000px; /* Ограничиваем ширину на ПК, чтобы не было "детского мира" */
+            width: 100%;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 { color: #bb86fc; font-size: 2.5em; margin-bottom: 5px; text-shadow: 0 0 15px rgba(187, 134, 252, 0.5); }
+        .subtitle { margin-bottom: 40px; opacity: 0.8; font-size: 1em; }
+
+        /* МАГИЯ ТУТ: Сетка карточек */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Авто-колонки */
+            gap: 20px;
+            text-align: left;
+        }
 
         .card {
             background: rgba(30, 30, 30, 0.7);
-            backdrop-filter: blur(10px); /* Эффект размытия фона за карточкой */
-            padding: 20px;
+            backdrop-filter: blur(10px);
+            padding: 25px;
             border-radius: 20px;
-            margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: left;
-            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s;
         }
         
-        .card:active { transform: scale(0.98); }
+        .card:hover { transform: translateY(-5px); border-color: #bb86fc; }
 
         .btn {
             display: block;
             width: 100%;
             background: #03dac6;
             color: #000 !important;
-            padding: 15px;
+            padding: 14px;
             border-radius: 12px;
             text-decoration: none !important;
             font-weight: bold;
-            margin-top: 12px;
+            margin-top: auto; /* Кнопка всегда прижата к низу */
             border: none;
             cursor: pointer;
-            box-sizing: border-box;
             text-align: center;
             font-size: 16px;
             transition: 0.3s;
         }
 
-        .btn:hover { filter: brightness(1.1); }
-
-        /* Цвета кнопок */
         .btn-mono { background: #e53935; color: white !important; }
         .btn-vst { background: #1a1a1a; color: #fff !important; border: 1px solid #ff0000; }
         .btn-apk { background: #bb86fc; }
         .btn-manager { background: #6200ee; color: white !important; }
         
         h3 { margin-top: 0; color: #03dac6; font-size: 1.3em; }
-        p { line-height: 1.4; opacity: 0.8; font-size: 0.95em; }
+        p { line-height: 1.5; opacity: 0.85; font-size: 0.95em; }
 
-        .footer { margin-top: 40px; padding-bottom: 20px; opacity: 0.6; font-size: 0.8em; }
+        .quote {
+            font-style: italic;
+            font-family: 'Courier New', Courier, monospace;
+            color: #b0b0b0;
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            border-left: 3px solid #bb86fc;
+        }
+
+        .footer { margin-top: 50px; padding-bottom: 30px; opacity: 0.6; font-size: 0.9em; }
+
+        /* Полоски прогресса */
+        .prog-container { margin-bottom: 15px; }
+        .prog-label { display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 5px; }
+        .prog-bg { width: 100%; background: #333; height: 8px; border-radius: 10px; }
+        .prog-fill { height: 100%; border-radius: 10px; }
+
+        /* Адаптация для совсем маленьких телефонов */
+        @media (max-width: 400px) {
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Всем привет и добро пожаловать я German</h1>
-        <p class="subtitle"></p> Создаю игры и приложения в Telegram
+        <h1>German</h1>
+        <p class="subtitle">Создаю игры и приложения в Telegram</p>
 
-
-
-
-
-         <div class="card">
-            <h3>My Bio 👤</h3>
-            <p>Вся информация обо мне, моих навыках и текущих целях.</p>
-            <a href="https://t.me/bio_azymiAy" class="btn">Читать подробнее</a>
-        </div>
-
-        <div class="card">
-            <h3>AnimeAI News 📢</h3>
-            <p>Новости разработки, эксклюзивные апдейты и лор персонажей.</p>
-            <a href="https://t.me/Anime_ai_18" class="btn">Открыть канал</a>
-        </div>
-
-        <div class="card">
-            <h3>AnimeAI 18+ 🤖</h3>
-            <p>ИИ-персонажи, ролевые сюжеты и создание своих героев. Всё самое интересное тут.</p>
-            <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
-        </div>
-<div class="card">
-            <h3>Чат со мной</h3>
-            <p>Наш чат обсуждения бота.</p>
-            <a href="https://t.me/anime_ai_18bot" class="btn">Открыть чат в тг</a>
-        </div>
-<div class="card">
-            <h3>AnimeAI 18+ 🤖</h3>
-            <p>ИИ-персонажи, ролевые сюжеты и создание своих героев. Всё самое интересное тут.Ссылка вдруг бот в телеграмме не работает.</p>
-            <a href="http://tg-miniapp-blond.vercel.app" class="btn">Запустить бота</a>
-        </div>
-
-        <div class="card">
-            <h3>AnimeAI Game 🎮</h3>
-            <p>Моя игра на Android. Скачивай APK файл и погружайся в мир аниме.</p>
-            <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
-        </div>
-        <div class="card" style="border-left: 4px solid #bb86fc;">
-            <h3 style="color: #bb86fc;">Status: In Progress 🛠️</h3>
-            
-            <p style="font-style: italic; font-family: 'Courier New', Courier, monospace; color: #b0b0b0; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">
-                "Сейчас активно работаю над обновлением ИИ-логики для AnimeAI. В планах на этот месяц — запуск веб-панели и пару новых секретных функций."
-            </p>
-
-            <div style="margin-top: 15px;">
-                <div style="font-size: 0.8em; margin-bottom: 5px; display: flex; justify-content: space-between;">
-                    <span>Обновление бота, разработка бота, создание игры.</span>
-                    <span>80%</span>
+        <div class="grid">
+            <div class="card" style="grid-column: span 1;">
+                <h3 style="color: #bb86fc;">Status: In Progress 🛠️</h3>
+                <div class="quote">
+                    "Сейчас активно работаю над обновлением ИИ-логики для AnimeAI. В планах на этот месяц — запуск веб-панели и пару новых секретных функций."
                 </div>
-                <div style="width: 100%; background: #333; height: 6px; border-radius: 10px;">
-                    <div style="width: 80%; background: #03dac6; height: 100%; border-radius: 10px; box-shadow: 0 0 10px #03dac6;"></div>
+                
+                <div class="prog-container">
+                    <div class="prog-label"><span>Разработка бота / игры</span><span>80%</span></div>
+                    <div class="prog-bg"><div class="prog-fill" style="width: 80%; background: #03dac6; box-shadow: 0 0 8px #03dac6;"></div></div>
+                </div>
+
+                <div class="prog-container">
+                    <div class="prog-label"><span>Новый бот для чатов</span><span>35%</span></div>
+                    <div class="prog-bg"><div class="prog-fill" style="width: 35%; background: #bb86fc; box-shadow: 0 0 8px #bb86fc;"></div></div>
                 </div>
             </div>
 
-            <div style="margin-top: 15px;">
-                <div style="font-size: 0.8em; margin-bottom: 5px; display: flex; justify-content: space-between;">
-                    <span>Разработка новой игры,паралельно разрабатываю апк, разрабатываю ещё одного бота для того чтобы следить за чатами.</span>
-                    <span>35%</span>
-                </div>
-                <div style="width: 100%; background: #333; height: 6px; border-radius: 10px;">
-                    <div style="width: 35%; background: #bb86fc; height: 100%; border-radius: 10px; box-shadow: 0 0 10px #bb86fc;"></div>
-                </div>
+            <div class="card">
+                <h3>My Bio 👤</h3>
+                <p>Вся информация обо мне, моих навыках и текущих целях.</p>
+                <a href="https://t.me/bio_azymiAy" class="btn">Читать подробнее</a>
             </div>
-        </div>
 
+            <div class="card">
+                <h3>AnimeAI News 📢</h3>
+                <p>Новости разработки, эксклюзивные апдейты и лор персонажей.</p>
+                <a href="https://t.me/Anime_ai_18" class="btn">Открыть канал</a>
+            </div>
 
-        <div class="card" style="border: 1px solid #6200ee;">
-            <h3>Реклама & PR 💼</h3>
-            <p>По вопросам сотрудничества или покупки рекламы пишите менеджеру.</p>
-            <a href="https://t.me/atsymi" class="btn btn-manager">Связаться с менеджером</a>
-        </div>
+            <div class="card">
+                <h3>AnimeAI 18+ 🤖</h3>
+                <p>ИИ-персонажи, ролевые сюжеты и создание своих героев. Бот в Telegram.</p>
+                <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
+            </div>
 
-        <div class="card" style="border: 1px dashed #ffb300; background: rgba(255, 179, 0, 0.05);">
-            <h3 style="color: #ffb300; text-align: center;">Поддержать автора ☕</h3>
-            <p style="text-align: center;">Любая поддержка ускоряет выход новых персонажей и новых обновлений!</p>
-            <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank (Карта)</button>
-            <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank (Карта)</button>
+            <div class="card">
+                <h3>Чат сообщества 💬</h3>
+                <p>Наш чат для обсуждения бота, багов и предложений.</p>
+                <a href="https://t.me/anime_ai_18bot" class="btn">Открыть чат</a>
+            </div>
+
+            <div class="card">
+                <h3>Web App Версия 🌐</h3>
+                <p>Альтернативная ссылка, если основной бот в Telegram не отвечает.</p>
+                <a href="http://tg-miniapp-blond.vercel.app" class="btn">Открыть Web App</a>
+            </div>
+
+            <div class="card">
+                <h3>AnimeAI Game 🎮</h3>
+                <p>Моя игра на Android. Скачивай APK напрямую и погружайся в мир аниме.</p>
+                <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
+            </div>
+
+            <div class="card" style="border: 1px solid #6200ee;">
+                <h3>Реклама & PR 💼</h3>
+                <p>По вопросам сотрудничества или покупки рекламы пишите менеджеру.</p>
+                <a href="https://t.me/atsymi" class="btn btn-manager">Связаться</a>
+            </div>
+
+            <div class="card" style="border: 1px dashed #ffb300;">
+                <h3 style="color: #ffb300;">Поддержать автора ☕</h3>
+                <p>Любая поддержка ускоряет выход новых обновлений!</p>
+                <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank</button>
+                <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank</button>
+            </div>
         </div>
 
         <div class="footer">
-            <p>Связь со мной напрямую:</p>
-            <a href="https://t.me/german_gren" style="color: #bb86fc; text-decoration: none; font-weight: bold;">@german_gren</a>
+            <p>Связь напрямую: <a href="https://t.me/german_gren" style="color: #bb86fc; text-decoration: none;">@german_gren</a></p>
         </div>
     </div>
 
@@ -169,13 +189,8 @@
     function copyCard(num) {
         navigator.clipboard.writeText(num);
         Swal.fire({
-          icon: 'success',
-          title: 'Скопировано!',
-          text: num,
-          background: '#1e1e1e',
-          color: '#fff',
-          showConfirmButton: false,
-          timer: 1500
+          icon: 'success', title: 'Скопировано!', text: num,
+          background: '#1e1e1e', color: '#fff', showConfirmButton: false, timer: 1500
         });
     }
     </script>
