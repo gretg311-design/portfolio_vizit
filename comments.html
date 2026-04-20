@@ -38,23 +38,32 @@
 
         .msg {
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px 15px; border-radius: 15px;
+            padding: 12px 16px; border-radius: 18px;
             align-self: flex-start; max-width: 85%;
-            animation: fadeIn 0.3s ease;
+            position: relative; animation: fadeIn 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .msg b { color: #03dac6; font-size: 0.85em; display: block; }
+        .msg b a { color: #03dac6; text-decoration: none; font-weight: bold; }
+        .msg span { display: block; margin-top: 5px; color: #efefef; }
 
-        .input-group { display: flex; gap: 8px; }
-        
+        .del-btn {
+            display: none; color: #ff4444; background: rgba(255,68,68,0.1); 
+            border: 1px solid #ff4444; border-radius: 8px;
+            font-size: 10px; cursor: pointer; padding: 4px 8px; margin-top: 8px;
+            transition: 0.2s;
+        }
+        .del-btn:hover { background: #ff4444; color: #fff; }
+
+        .input-group { display: flex; gap: 8px; width: 100%; }
         input {
             background: #111; border: 1px solid #333; color: #fff;
-            padding: 12px; border-radius: 12px; outline: none;
+            padding: 12px; border-radius: 12px; outline: none; transition: 0.3s;
         }
-
-        #nick { width: 100px; }
+        input:focus { border-color: #bb86fc; }
+        #nick { width: 120px; }
         #text { flex: 1; }
 
         .send-btn {
@@ -62,7 +71,7 @@
             padding: 0 20px; border-radius: 12px; font-weight: bold; cursor: pointer;
         }
 
-        .btn-back { color: #03dac6; text-decoration: none; font-weight: bold; font-size: 0.9em; }
+        .btn-back { color: #03dac6; text-decoration: none; font-weight: bold; font-size: 0.9em; margin-bottom: 8px; display: block; }
     </style>
 </head>
 <body>
@@ -73,8 +82,8 @@
         <div class="header-box">
             <h1>Мессенджер Обсуждений 💬</h1>
             <div class="rules">
-                Правила: пиши @username и причину обращения.<br>
-                Спам удаляется лично German.
+                Нажми на @username для перехода в Telegram.<br>
+                Соблюдайте правила общения.
             </div>
         </div>
 
@@ -88,7 +97,10 @@
     </div>
 
     <script>
-        // Твои проверенные данные из Firebase
+        // Секретный "ключ" (это слово "GermanAdmin" в кодировке Base64)
+        // Чтобы изменить пароль, введи в консоли браузера btoa("твой_пароль") и вставь результат сюда
+        const _k = "R2VybWFuQWRtaW4="; 
+
         const firebaseConfig = {
             apiKey: "AIzaSyBNBRzc6CNETu0r62_dPOoGqKzc_uLrLiM",
             authDomain: "germangift-7fe83.firebaseapp.com",
@@ -99,7 +111,6 @@
             appId: "1:156375203434:web:2b7489c43fbe5fef891413"
         };
 
-        // Инициализация Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
@@ -108,41 +119,66 @@
         const inputText = document.getElementById('text');
         const btnSend = document.getElementById('send');
 
-        // Логика отправки сообщения
+        let isAdmin = false;
+
+        window.deleteMsg = function(id) {
+            if (isAdmin) {
+                db.ref("messages/" + id).remove();
+            }
+        };
+
         btnSend.onclick = function() {
             const name = inputNick.value || "Аноним";
             const message = inputText.value;
             
             if (!message) return;
 
+            // Хакерская активация админки
+            if (btoa(name) === _k && message === "/admin") {
+                isAdmin = true;
+                document.querySelectorAll('.del-btn').forEach(b => b.style.display = "block");
+                inputText.value = "";
+                alert("Режим модератора активирован");
+                return;
+            }
+
             db.ref("messages").push().set({
                 name: name,
                 text: message,
                 time: Date.now()
-            }).then(() => {
-                // Очищаем поле только после успешной отправки
-                inputText.value = "";
-            }).catch((error) => {
-                console.error("Ошибка Firebase:", error);
             });
+            inputText.value = "";
         };
 
-        // Получение сообщений в реальном времени
         db.ref("messages").on("child_added", function(snapshot) {
             const data = snapshot.val();
-            if (data && data.text) {
-                const div = document.createElement('div');
-                div.className = 'msg';
-                div.innerHTML = `<b>${data.name}</b><span>${data.text}</span>`;
-                chatWindow.appendChild(div);
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-            }
+            const id = snapshot.key;
+            
+            let cleanNick = data.name.replace('@', '');
+            let nickLink = data.name.startsWith('@') 
+                ? `<a href="https://t.me/${cleanNick}" target="_blank">${data.name}</a>` 
+                : data.name;
+
+            const div = document.createElement('div');
+            div.className = 'msg';
+            div.id = "msg-" + id;
+            div.innerHTML = `
+                <b>${nickLink}</b>
+                <span>${data.text}</span>
+                <button class="del-btn" onclick="deleteMsg('${id}')">Удалить 🗑️</button>
+            `;
+            chatWindow.appendChild(div);
+            
+            if (isAdmin) div.querySelector('.del-btn').style.display = "block";
+            chatWindow.scrollTop = chatWindow.scrollHeight;
         });
 
-        // Отправка по нажатию Enter
-        inputText.addEventListener("keypress", (e) => { 
-            if(e.key === "Enter") btnSend.click(); 
+        db.ref("messages").on("child_removed", function(snapshot) {
+            const el = document.getElementById("msg-" + snapshot.key);
+            if (el) el.remove();
         });
+
+        inputText.addEventListener("keypress", (e) => { if(e.key === "Enter") btnSend.click(); });
     </script>
 </body>
 </html>
