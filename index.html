@@ -183,6 +183,34 @@
                 <p>Моя игра на Android. Скачивай APK напрямую и погружайся в мир аниме.</p>
                 <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
             </div>
+<div class="card" style="border: 1px solid #03dac6;">
+    <h3>Написать мне ✉️</h3>
+    <p>Есть предложение или нашли баг? Можете оставить публичное сообщение.</p>
+    <button onclick="checkRules()" class="btn">Оставить сообщение</button>
+</div>
+
+<script>
+function checkRules() {
+    Swal.fire({
+      title: 'Внимание!',
+      text: "Прежде чем написать мне, обязательно прочитай правила. Иначе твое сообщение будет удалено.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb86fc',
+      cancelButtonColor: '#e53935',
+      confirmButtonText: 'Читать правила',
+      cancelButtonText: 'Я уже читал(а)',
+      background: '#1e1e1e',
+      color: '#fff'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "rules.html"; // Уводим на правила
+      } else {
+        window.location.href = "comments.html"; // Уводим сразу в чат
+      }
+    })
+}
+</script>
 
             <div class="card" style="border: 1px solid #6200ee;">
                 <h3>Реклама & PR 💼</h3>
