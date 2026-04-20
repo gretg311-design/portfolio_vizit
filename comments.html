@@ -88,18 +88,18 @@
     </div>
 
     <script>
-        // ТВОИ ДАННЫЕ ИЗ FIREBASE (Вставь их сюда!)
+        // Твои проверенные данные из Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBNBRzc6CNETu0r62_dPOoGqKzc_uLrLiM",
             authDomain: "germangift-7fe83.firebaseapp.com",
-            databaseURL: "https://germangift-7fe83-default-rtdb.firebaseio.com"",
+            databaseURL: "https://germangift-7fe83-default-rtdb.firebaseio.com",
             projectId: "germangift-7fe83",
             storageBucket: "germangift-7fe83.firebasestorage.app",
             messagingSenderId: "156375203434",
             appId: "1:156375203434:web:2b7489c43fbe5fef891413"
         };
 
-        // Инициализация
+        // Инициализация Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
@@ -108,32 +108,41 @@
         const inputText = document.getElementById('text');
         const btnSend = document.getElementById('send');
 
-        // Отправка
+        // Логика отправки сообщения
         btnSend.onclick = function() {
             const name = inputNick.value || "Аноним";
             const message = inputText.value;
+            
             if (!message) return;
 
             db.ref("messages").push().set({
                 name: name,
                 text: message,
                 time: Date.now()
+            }).then(() => {
+                // Очищаем поле только после успешной отправки
+                inputText.value = "";
+            }).catch((error) => {
+                console.error("Ошибка Firebase:", error);
             });
-            inputText.value = "";
         };
 
         // Получение сообщений в реальном времени
         db.ref("messages").on("child_added", function(snapshot) {
             const data = snapshot.val();
-            const div = document.createElement('div');
-            div.className = 'msg';
-            div.innerHTML = `<b>${data.name}</b><span>${data.text}</span>`;
-            chatWindow.appendChild(div);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
+            if (data && data.text) {
+                const div = document.createElement('div');
+                div.className = 'msg';
+                div.innerHTML = `<b>${data.name}</b><span>${data.text}</span>`;
+                chatWindow.appendChild(div);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
         });
 
-        // Отправка по Enter
-        inputText.addEventListener("keypress", (e) => { if(e.key === "Enter") btnSend.click(); });
+        // Отправка по нажатию Enter
+        inputText.addEventListener("keypress", (e) => { 
+            if(e.key === "Enter") btnSend.click(); 
+        });
     </script>
 </body>
 </html>
