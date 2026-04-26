@@ -1,8 +1,209 @@
-<!DOCTYPE html>
+[26.04.2026 3:15] 𝒢ℯ𝓇𝓂𝒶𝓃 𝒢𝓇ℯℯ𝓃 #бессмертный: <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив проектов | German</title>
+    <title>GNDEV | German Portfolio</title>
     <style>
-      
+        /* Основные стили для темной темы */
+        body {
+            background-color: #0f0f12; 
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Шапка сайта */
+        .header {
+            width: 100%; max-width: 800px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #bb86fc; font-size: 2.8em; margin: 0;
+            text-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+        }
+
+        .header p { color: #aaa; margin-top: 10px; font-size: 1.1em; }
+
+        /* Контейнер для карточек */
+        .container {
+            width: 90%; max-width: 700px;
+            display: flex; flex-direction: column; gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* Общие стили для карточек */
+        .card {
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s ease;
+        }
+
+        /* === ТА САМАЯ КАРТОЧКА ANIMEAI === */
+        .card.animeai-card {
+            cursor: pointer;
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            background: linear-gradient(135deg, rgba(187, 134, 252, 0.1), rgba(15, 15, 18, 0.6));
+        }
+
+        .card.animeai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(187, 134, 252, 0.2);
+            border-color: #bb86fc;
+        }
+
+        .card-icon { font-size: 40px; margin-right: 20px; }
+        .card-title { color: #bb86fc; font-size: 1.5em; margin: 0; }
+        .card-subtitle { color: #aaa; margin: 5px 0 0; font-size: 0.9em; }
+        .card-action { margin-top: 15px; font-size: 0.85em; color: #03dac6; font-weight: bold; }
+
+        /* Стили для остальных карточек (обычных) */
+        .card.standard-card:hover {
+            background: rgba(40, 40, 40, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: auto; padding: 20px;
+            font-size: 0.8em; color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>GN_DEV</h1>
+        <p>Портфолио & Проекты Германа</p>
+    </div>
+
+    <div class="container">
+
+        <div class="card animeai-card" onclick="window.location.href='animeai.html'">
+            <div style="display: flex; align-items: center;">
+                <div class="card-icon">🤖</div>
+                <div>
+                    <h3 class="card-title">AnimeAI Project</h3>
+                    <p class="card-subtitle">Искусственный интеллект для аниме-сообществ</p>
+                </div>
+            </div>
+            <div class="card-action">Нажми, чтобы открыть проект →</div>
+        </div>
+
+        <div class="card standard-card">
+            <h3 style="color: #fff; margin: 0;">Связаться со мной</h3>
+            <p style="color: #ccc; font-size: 0.9em; margin: 10px 0;">Для предложений и сотрудничества.</p>
+            <a href="rules.html" style="color: #03dac6; text-decoration: none; font-weight: bold;">Перейти к чату</a>
+        </div>
+
+        <div class="card standard-card">
+[26.04.2026 3:15] 𝒢ℯ𝓇𝓂𝒶𝓃 𝒢𝓇ℯℯ𝓃 #бессмертный: <h3 style="color: #fff; margin: 0;">Архив разработок</h3>
+            <p style="color: #ccc; font-size: 0.9em; margin: 10px 0;">Старые скрипты и эксперименты.</p>
+            <a href="index2.html" style="color: #03dac6; text-decoration: none; font-weight: bold;">Посмотреть архив</a>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © GNDEV, 2026. Сделано с любовью. 🤫
+    </div>
+
+</body>
+</html>
+[26.04.2026 3:26] 𝒢ℯ𝓇𝓂𝒶𝓃 𝒢𝓇ℯℯ𝓃 #бессмертный: <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeAI | Проект Германа</title>
+    <style>
+        body {
+            background: #0f0f12;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .hero {
+            width: 100%; max-width: 800px;
+            padding: 60px 20px; text-align: center;
+            background: linear-gradient(to bottom, rgba(187, 134, 252, 0.2), transparent);
+        }
+
+        .project-icon { font-size: 80px; margin-bottom: 20px; }
+        h1 { color: #bb86fc; font-size: 2.5em; margin: 0; text-shadow: 0 0 20px rgba(187,134,252,0.5); }
+        
+        .content { width: 90%; max-width: 700px; padding: 20px; }
+
+        .description {
+            line-height: 1.6; font-size: 1.1em; color: #ccc;
+            background: rgba(255,255,255,0.03); padding: 20px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .links-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px;
+        }
+
+        .link-card {
+            background: #1e1e26; padding: 20px; border-radius: 15px;
+            text-decoration: none; color: #fff; text-align: center;
+            border: 1px solid #333; transition: 0.3s;
+        }
+
+        .link-card:hover { border-color: #03dac6; transform: translateY(-5px); }
+        .link-card i { display: block; font-size: 24px; margin-bottom: 10px; }
+        .link-card span { color: #03dac6; font-weight: bold; }
+
+        .back-btn {
+            margin-top: 40px; color: #aaa; text-decoration: none; font-size: 0.9em;
+        }
+        .back-btn:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="project-icon">🤖</div>
+        <h1>AnimeAI</h1>
+        <p>Активно работаю над обновлением ИИ-логики</p>
+    </div>
+
+    <div class="content">
+        <div class="description">
+            <b>AnimeAI</b> — это инновационный проект, объединяющий нейросети и аниме-культуру. 
+            В данный момент ведется разработка новой логики и запуск удобной веб-панели для управления.
+        </div>
+
+        <div class="links-grid">
+            <a href="https://t.me/AnimeAI_News" target="_blank" class="link-card">
+                <i>📢</i>
+                <span>Канал новостей</span>
+                <p style="font-size: 0.8em; color: #888;">Все апдейты тут</p>
+            </a>
+
+            <a href="https://t.me/твой_бот" target="_blank" class="link-card">
+                <i>💬</i>
+                <span>Попробовать ИИ</span>
+                <p style="font-size: 0.8em; color: #888;">Запустить в Telegram</p>
+            </a>
+        </div>
+
+        <center>
+            <a href="index.html" class="back-btn">← Вернуться в портфолио</a>
+        </center>
+    </div>
+
+</body>
+</html>
