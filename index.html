@@ -3,242 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио German</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <title>GNDEV | German Portfolio</title>
     <style>
+        /* Основные стили для темной темы */
         body {
             background-color: #0f0f12; 
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('background.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #e0e0e0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .container {
-            max-width: 1000px; 
-            width: 100%;
+        /* Шапка сайта */
+        .header {
+            width: 100%; max-width: 800px;
             padding: 40px 20px;
-            box-sizing: border-box;
             text-align: center;
         }
 
-        h1 { color: #bb86fc; font-size: 2.5em; margin-bottom: 5px; text-shadow: 0 0 15px rgba(187, 134, 252, 0.5); }
-        .subtitle { margin-bottom: 40px; opacity: 0.8; font-size: 1em; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 20px;
-            text-align: left;
+        .header h1 {
+            color: #bb86fc; font-size: 2.8em; margin: 0;
+            text-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
         }
 
+        .header p { color: #aaa; margin-top: 10px; font-size: 1.1em; }
+
+        /* Контейнер для карточек */
+        .container {
+            width: 90%; max-width: 700px;
+            display: flex; flex-direction: column; gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* Общие стили для карточек */
         .card {
-            background: rgba(30, 30, 30, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 25px;
+            background: rgba(30, 30, 30, 0.6);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s ease;
         }
-        
-        .card:hover { transform: translateY(-5px); border-color: #bb86fc; }
 
-        /* ИСПРАВЛЕННЫЕ КНОПКИ */
-        .btn {
-            display: flex;           /* Центрирование через Flexbox */
-            align-items: center;     /* Вертикальное выравнивание */
-            justify-content: center;  /* Горизонтальное выравнивание */
-            width: 100%;
-            background: #03dac6;
-            color: #000 !important;
-            height: 50px;            /* Фиксированная высота для всех кнопок */
-            border-radius: 12px;
-            text-decoration: none !important;
-            font-weight: bold;
-            margin-top: auto;        /* Прижимает кнопку к низу карточки */
-            border: none;
+        /* === ТА САМАЯ КАРТОЧКА ANIMEAI === */
+        .card.animeai-card {
             cursor: pointer;
-            text-align: center;
-            font-size: 16px;
-            transition: 0.3s;
-            box-sizing: border-box;
-            line-height: 1;
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            background: linear-gradient(135deg, rgba(187, 134, 252, 0.1), rgba(15, 15, 18, 0.6));
         }
 
-        /* Отступ между кнопками в карточке донатов */
-        .btn + .btn {
-            margin-top: 12px;
+        .card.animeai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(187, 134, 252, 0.2);
+            border-color: #bb86fc;
         }
 
-        .btn-mono { background: #e53935; color: white !important; }
-        .btn-vst { background: #1a1a1a; color: #fff !important; border: 1px solid #ff0000; }
-        .btn-apk { background: #bb86fc; }
-        .btn-manager { background: #6200ee; color: white !important; }
-        
-        h3 { margin-top: 0; color: #03dac6; font-size: 1.3em; }
-        p { line-height: 1.5; opacity: 0.85; font-size: 0.95em; }
+        .card-icon { font-size: 40px; margin-right: 20px; }
+        .card-title { color: #bb86fc; font-size: 1.5em; margin: 0; }
+        .card-subtitle { color: #aaa; margin: 5px 0 0; font-size: 0.9em; }
+        .card-action { margin-top: 15px; font-size: 0.85em; color: #03dac6; font-weight: bold; }
 
-        .quote {
-            font-style: italic;
-            font-family: 'Courier New', Courier, monospace;
-            color: #b0b0b0;
-            background: rgba(0,0,0,0.3);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-            border-left: 3px solid #bb86fc;
+        /* Стили для остальных карточек (обычных) */
+        .card.standard-card:hover {
+            background: rgba(40, 40, 40, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
-        .footer { margin-top: 50px; padding-bottom: 30px; opacity: 0.6; font-size: 0.9em; }
-
-        .prog-container { margin-bottom: 15px; }
-        .prog-label { display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 5px; }
-        .prog-bg { width: 100%; background: #333; height: 8px; border-radius: 10px; }
-        .prog-fill { height: 100%; border-radius: 10px; }
-
-        @media (max-width: 400px) {
-            .grid { grid-template-columns: 1fr; }
+        /* Футер */
+        .footer {
+            margin-top: auto; padding: 20px;
+            font-size: 0.8em; color: #555;
         }
     </style>
 </head>
 <body>
 
+    <div class="header">
+        <h1>GN_DEV</h1>
+        <p>Портфолио & Проекты Германа</p>
+    </div>
+
     <div class="container">
-        <h1>German</h1>
-        <p class="subtitle">Создаю игры и приложения в Telegram</p>
 
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: #bb86fc;">Status: In Progress 🛠️</h3>
-                <div class="quote">
-                    "Сейчас активно работаю над обновлением ИИ-логики для AnimeAI. В планах на этот месяц — запуск веб-панели и пару новых секретных функций."
-                </div>
-                
-                <div class="prog-container">
-                    <div class="prog-label"><span>Разработка бота / игры</span><span>80%</span></div>
-                    <div class="prog-bg"><div class="prog-fill" style="width: 80%; background: #03dac6; box-shadow: 0 0 8px #03dac6;"></div></div>
-                </div>
-
-                <div class="prog-container">
-                    <div class="prog-label"><span>Новый бот для чатов</span><span>35%</span></div>
-                    <div class="prog-bg"><div class="prog-fill" style="width: 35%; background: #bb86fc; box-shadow: 0 0 8px #bb86fc;"></div></div>
+        <div class="card animeai-card" onclick="window.location.href='animeai.html'">
+            <div style="display: flex; align-items: center;">
+                <div class="card-icon">🤖</div>
+                <div>
+                    <h3 class="card-title">AnimeAI Project</h3>
+                    <p class="card-subtitle">Искусственный интеллект для аниме-сообществ</p>
                 </div>
             </div>
-
-            <div class="card">
-                <h3>My Bio 👤</h3>
-                <p>Вся информация обо мне, моих навыках и текущих целях.</p>
-                <a href="https://t.me/bio_azymiAy" class="btn">Читать подробнее</a>
-            </div>
-<div class="card">
-    <h3>Проекты и разработки 🚀📂</h3>
-    <p>Следите за новостями в Telegram или посмотрите полный каталог прямо здесь.</p>
-    
-    <div style="display: flex; gap: 10px; margin-top: auto;">
-        <a href="https://t.me/germans_media" class="btn" style="flex: 1; margin-top: 0;">Telegram</a>
-        
-        <a href="index2.html" class="btn btn-apk" style="flex: 1; margin-top: 0;">На сайте</a>
-    </div>
-</div>
-
-
-            <div class="card">
-                <h3>AnimeAI News 📢</h3>
-                <p>Новости разработки, эксклюзивные апдейты и лор персонажей.</p>
-                <a href="https://t.me/Anime_ai_18" class="btn">Открыть канал</a>
-            </div>
-
-            <div class="card">
-                <h3>AnimeAI 18+ 🤖</h3>
-                <p>ИИ-персонажи, ролевые сюжеты и создание своих героев. Бот в Telegram.</p>
-                <a href="https://t.me/anime_ai_18_bot" class="btn">Запустить бота</a>
-            </div>
-
-            <div class="card">
-                <h3>Чат сообщества 💬</h3>
-                <p>Наш чат для обсуждения бота, багов и предложений.</p>
-                <a href="https://t.me/anime_ai_18bot" class="btn">Открыть чат</a>
-            </div>
-
-            <div class="card">
-                <h3>Web App Версия 🌐</h3>
-                <p>Альтернативная ссылка, если основной бот в Telegram не отвечает.</p>
-                <a href="http://tg-miniapp-blond.vercel.app" class="btn">Открыть Web App</a>
-            </div>
-
-            <div class="card">
-                <h3>AnimeAI Game 🎮</h3>
-                <p>Моя игра на Android. Скачивай APK напрямую и погружайся в мир аниме.</p>
-                <a href="AnimeAI18+.apk" class="btn btn-apk" download>Скачать .APK</a>
-            </div>
-<div class="card" style="border: 1px solid #03dac6;">
-    <h3>Написать мне ✉️</h3>
-    <p>Есть предложение или нашли баг? Можете оставить публичное сообщение.</p>
-    <button onclick="checkRules()" class="btn">Оставить сообщение</button>
-</div>
-
-<script>
-function checkRules() {
-    Swal.fire({
-      title: 'Внимание!',
-      text: "Прежде чем написать мне, обязательно прочитай правила. Иначе твое сообщение будет удалено.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#bb86fc',
-      cancelButtonColor: '#e53935',
-      confirmButtonText: 'Читать правила',
-      cancelButtonText: 'Я уже читал(а)',
-      background: '#1e1e1e',
-      color: '#fff'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "rules.html"; // Уводим на правила
-      } else {
-        window.location.href = "comments.html"; // Уводим сразу в чат
-      }
-    })
-}
-</script>
-
-            <div class="card" style="border: 1px solid #6200ee;">
-                <h3>Реклама & PR 💼</h3>
-                <p>По вопросам сотрудничества или покупки рекламы пишите менеджеру.</p>
-                <a href="https://t.me/atsymi" class="btn btn-manager">Связаться</a>
-            </div>
-
-            <div class="card" style="border: 1px dashed #ffb300;">
-                <h3 style="color: #ffb300;">Поддержать автора ☕</h3>
-                <p>Любая поддержка ускоряет выход новых обновлений!</p>
-                <button onclick="copyCard('4441111076902315')" class="btn btn-mono">Monobank</button>
-                <button onclick="copyCard('5168120704562696')" class="btn btn-vst">VST Bank</button>
-            </div>
+            <div class="card-action">Нажми, чтобы открыть проект →</div>
         </div>
 
-        <div class="footer">
-            <p>Связь напрямую: <a href="https://t.me/german_gren" style="color: #bb86fc; text-decoration: none;">@german_gren</a></p>
+        <div class="card standard-card">
+            <h3 style="color: #fff; margin: 0;">Связаться со мной</h3>
+            <p style="color: #ccc; font-size: 0.9em; margin: 10px 0;">Для предложений и сотрудничества.</p>
+            <a href="rules.html" style="color: #03dac6; text-decoration: none; font-weight: bold;">Перейти к чату</a>
         </div>
+
+        <div class="card standard-card">
+            <h3 style="color: #fff; margin: 0;">Архив разработок</h3>
+            <p style="color: #ccc; font-size: 0.9em; margin: 10px 0;">Старые скрипты и эксперименты.</p>
+            <a href="index2.html" style="color: #03dac6; text-decoration: none; font-weight: bold;">Посмотреть архив</a>
+        </div>
+
     </div>
 
-    <script>
-    function copyCard(num) {
-        navigator.clipboard.writeText(num);
-        Swal.fire({
-          icon: 'success', title: 'Скопировано!', text: num,
-          background: '#1e1e1e', color: '#fff', showConfirmButton: false, timer: 1500
-        });
-    }
-    </script>
+    <div class="footer">
+        © GNDEV, 2026. Сделано с любовью. 🤫
+    </div>
+
 </body>
 </html>
